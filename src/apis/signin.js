@@ -1,5 +1,5 @@
 export const signin = async (email, password, navigate, setLoading) => {
-  const response = await fetch("/api/login", {
+  const response = await fetch("https://mim-ar-task-server.vercel.app/api/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
