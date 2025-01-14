@@ -1,0 +1,92 @@
+.dashboard{
+    backdrop-filter: blur(100px) saturate(100%);
+    background: rgba(250, 250, 250, 0.1);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, .1), 0px 8px 16px rgba(0, 0, 0, .1);
+    width: 80vw;
+}
+
+.profile-details>h5{
+    margin: 0 !important;
+}
+
+.profile-icon{
+    width: 30px;
+}
+
+.edit-icon{
+    width: 20px;
+}
+
+.edit-icon:hover{
+    cursor: pointer;
+}
+
+td, th{
+    background: none !important;
+}
+
+table{
+    border-color: rgb(199, 199, 199) !important;
+}
+
+.dashboard-subheading>h4{
+    margin: 0 !important;
+}
+
+
+.line-div{
+    border-bottom: 1px solid rgb(125, 125, 125);
+}
+
+.weather-card {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+.weather-icon {
+    width: 50px;
+    margin: 10px auto;
+}
+
+.weather-temp {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.weather-details {
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.quotes-card {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+    color: #4a4a4a;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+.quote-text {
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.quote-author {
+    font-size: 0.85rem;
+    margin-top: 10px;
+    color: #333;
+}
+
+@media only screen and (max-width: 414px) {
+    .dashboard {
+      width: 100vw;
+    }
+
+  }

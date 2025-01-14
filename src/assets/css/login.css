@@ -1,0 +1,79 @@
+.login-page{
+    backdrop-filter: blur(50px) saturate(100%);
+    background: rgba(250, 250, 250, 0.1);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, .1), 0px 8px 16px rgba(0, 0, 0, .1);
+    width: 30vw;
+}
+
+.line-with-text {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: lightgray;
+    font-size: small;
+}
+
+.line-with-text::before,
+.line-with-text::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #000; 
+    margin: 0 10px;
+    border-color: lightgray;
+
+}
+
+.input-fields>label{
+    font-size: 0.7rem;
+    color: white;
+}
+
+.input-fields>input{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    /* width: 100%; */
+}
+.remember-me>label{
+    font-size: small;
+    color: white;
+}
+
+.btn-social-media{
+    border: 1px solid lightgray;
+    font-size: 0.8rem;
+    color: white;
+}
+
+.btn-social-media:hover{
+    border: 1px solid lightgray;
+    color: white;
+}
+
+.btn-logo{
+    width: 20px;
+}
+
+.signup-link{
+    font-size: 0.75rem;
+    color: black;
+}
+
+.signup-link>a{
+    text-decoration: none;
+}
+
+.forgot-password{
+    font-size: 0.75rem;
+}
+
+@media only screen and (max-width: 414px) {
+    .login-page {
+      width: 90vw;
+    }
+    .signup-page {
+        width: 90vw;
+      }
+  }
