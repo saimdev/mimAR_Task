@@ -7,12 +7,17 @@ import { Logout } from './Components/Logout';
 import { UpdateProfile } from './Pages/Profile/UpdateProfile';
 import { ForgotPassword } from './Pages/Profile/ForgotPassword';
 import ThreeDViewer from './Pages/3D/3DViewer';
+import GoogleLoginPage from './Pages/Testing/GoogleLoginPage';
+import GithubPage from './Components/GithubPage';
 
 function App() {
   return (
     <div className="App">
      <BrowserRouter>
         <Routes>
+        <Route element={[<GithubPage />]}
+            path="/"
+          />
           <Route element={[<Login />]}
             path="/login"
           />
@@ -33,6 +38,9 @@ function App() {
           />
           <Route element={[<ThreeDViewer/>]}
             path="/threejs"
+          />
+          <Route element={[<GoogleLoginPage/>]}
+            path="/testingGoogleLogin"
           />
         </Routes>
       </BrowserRouter>

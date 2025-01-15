@@ -8,12 +8,20 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { signin } from "../../apis/signin";
 import { useNavigate } from "react-router-dom";
+import { useGoogleLogin } from "@react-oauth/google";
+import { googleLogin } from "../../apis/googleLogin";
+import FacebookLogin from "react-facebook-login";
+import { facebookLogin } from "../../apis/facebookLogin";
+import GitHubLogin from "react-github-login";
+// import { UserContext } from "../../Context/UserContext";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [googleUser, setGoogleUser] = useState(null);
+  //   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,6 +29,22 @@ export const Login = () => {
     if (savedEmail) {
       setEmail(savedEmail);
       setRememberMe(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log("Window location:", window.location.href); // Check full URL
+    const queryString = window.location.search; // Extract query string
+    console.log("Query String:", queryString);
+
+    const urlParams = new URLSearchParams(queryString); // Parse query params
+    const codeParam = urlParams.get("code"); // Extract 'code'
+
+    if (codeParam) {
+      console.log("GitHub Code Found:", codeParam);
+      // Perform additional actions if needed
+    } else {
+      console.log("No GitHub Code Found");
     }
   }, []);
 
@@ -37,6 +61,41 @@ export const Login = () => {
     // window.location.reload();
   };
 
+  const loginGoogle = useGoogleLogin({
+    onSuccess: (codeResponse) => {
+      setGoogleUser(codeResponse);
+      console.log(codeResponse);
+    },
+    onError: (error) => window.alert(JSON.stringify(error)),
+  });
+
+  useEffect(() => {
+    googleLogin(googleUser, navigate);
+
+    // navigate("/home");
+  }, [googleUser]);
+
+  const handleFacebookCallback = (response) => {
+    facebookLogin(response, navigate);
+
+    // const { accessToken } = response;
+    // try {
+    //   const res = await fetch(
+    //     `https://graph.facebook.com/me?fields=name,email,picture&access_token=${accessToken}`
+    //   );
+    //   const data = await res.json();
+    //   console.log("Graph API Data:", data);
+    // } catch (error) {
+    //   console.error("Error fetching data from Graph API:", error);
+    // }
+  };
+
+  const loginWithGithub = () => {
+    window.location.assign(
+      "https://github.com/login/oauth/authorize?client_id=Ov23limBVVW5jwAa4QyG"
+    );
+  };
+
   return (
     <div className="login-page d-flex flex-column p-5">
       <div className="w-100 d-flex flex-row justify-content-center">
@@ -46,20 +105,30 @@ export const Login = () => {
       <button
         type="submit"
         className="btn btn-social-media mt-1 d-flex flex-row align-items-center justify-content-center"
+        onClick={() => loginGoogle()}
+        style={{ background: "white", color: "black" }}
       >
         <img src={googleLogo} alt="" className="btn-logo mx-1" />
         <p className="mx-1">Login with Google</p>
       </button>
-      <button
+      {/* <button
         type="submit"
         className="btn btn-social-media mt-1 d-flex flex-row align-items-center justify-content-center"
       >
         <img src={facebookLogo} alt="" className="btn-logo mx-1" />
         <p className="mx-1">Login with Facebook</p>
-      </button>
+      </button> */}
+      <FacebookLogin
+        appId="1388570825887445"
+        autoLoad={false}
+        fields="name,email,picture"
+        callback={handleFacebookCallback}
+      />
       <button
         type="submit"
         className="btn btn-social-media mt-1 d-flex flex-row align-items-center justify-content-center"
+        style={{ background: "white", color: "black" }}
+        onClick={loginWithGithub}
       >
         <img src={githubLogo} alt="" className="btn-logo mx-1" />
         <p className="mx-1">Login with Github</p>
